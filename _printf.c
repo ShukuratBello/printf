@@ -1,18 +1,18 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
+
 /**
- * handle_specifiers - entry point
- * @specifier: conversion between function types
- * Return: 0
+ * _printf - function to print string
+ * @format: argument types to print
+ * Return: length of characters to print
  */
-unsigned int (*handle_specifiers(const char *specifier))(va_list)
+int _printf(const char *format, ...)
 {
-	int i;
-	converter_t converters[] = {
-		{'c', printf_c},
-		{'s', printf_s},
-		{'%', print_percent},
+	converter_t convert[] = {
+		{"%c", printf_c},
+		{"%s", printf_s},
+		{"%%", print_percent},
 		{0, NULL}
 		/**
 		 *{'i', convert_di},
@@ -29,27 +29,8 @@ unsigned int (*handle_specifiers(const char *specifier))(va_list)
 		 */
 	};
 
-	for (i = 0; converters[i].func; i++)
-	{
-		if (converters[i].specifier == *specifier)
-			return (converters[i].func);
-	}
-
-	return (NULL);
-}
-
-/**
- * _printf - function to print string
- * @format: argument types to print
- * Return: length of characters to print
- */
-int _printf(const char *format, ...)
-{
-
 	va_list args;
-	int i = 0;
-	unsigned int len = 0;
-	unsigned int (*f)(va_list);
+	int i = 0, j, len = 0;
 
 	va_start(args, format);
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
@@ -58,16 +39,20 @@ int _printf(const char *format, ...)
 Here:
 	while (format[i] != '\0')
 	{
-		if (*(format + i) == '%')
+		j = 13;
+		while (j >= 0)
 		{
-			f = handle_specifiers(format + i + 1);
-			len += f(args);
-			i = i + 1;
-			goto Here;
+			if (convert[j].id[0] == format[i] && convert[j].id[1] == format[i + 1])
+			{
+				len += convert[j].func(args);
+				i = i + 2;
+				goto Here;
+			}
+			j--;
 		}
-			_putchar(format[i]);
-			len++;
-			i++;
+		_putchar(format[i]);
+		len++;
+		i++;
 	}
 	va_end(args);
 	return (len);

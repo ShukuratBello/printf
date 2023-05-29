@@ -5,7 +5,7 @@
  * @val: character to print
  * Return: The number of bytes stored to the buffer.
  */
-unsigned int printf_c(va_list val)
+int printf_c(va_list val)
 {
 	char ch;
 

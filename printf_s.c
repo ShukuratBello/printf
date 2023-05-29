@@ -5,7 +5,7 @@
  * @val: format specifier
  * Return: len
  */
-unsigned int printf_s(va_list val)
+int printf_s(va_list val)
 {
 	char *s;
 	int i, len;
