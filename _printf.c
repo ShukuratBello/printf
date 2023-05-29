@@ -9,9 +9,9 @@ unsigned int (*handle_specifiers(const char *specifier))(va_list)
 {
 	int i;
 	converter_t converters[] = {
-		{'c', printf_c},
-		{'s', printf_s},
-		{'%', printf_percent},
+		{'%c', printf_c},
+		{'%s', printf_s},
+		{'%%', printf_percent},
 		{0, NULL}
 		/**
 		 *{'i', convert_di},
