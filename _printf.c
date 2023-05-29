@@ -9,11 +9,11 @@
  */
 int _printf(const char *format, ...)
 {
-	converter_t convert[] = {
-		{"%c", printf_c},
-		{"%s", printf_s},
-		{"%%", print_percent},
-		{0, NULL}
+	converter_t container[] = {
+		{'c', printf_c},
+		{'s', printf_s},
+		{'%', print_percent},
+		{'\0', NULL}
 		/**
 		 *{'i', convert_di},
 		 *{'%', convert_percent},
@@ -30,30 +30,37 @@ int _printf(const char *format, ...)
 	};
 
 	va_list args;
-	int i = 0, j, len = 0;
+	int i = 0, j = 0;
+	int buff_count = 0, prev_buff_count = 0;
+	char buffer[2000];
 
-	va_start(args, format);
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+	if (!format)
 		return (-1);
-
-Here:
-	while (format[i] != '\0')
+	va_start(arg, format);
+	while (format && format[i] != '\0')
 	{
-		j = 13;
-		while (j >= 0)
+		if (format[i] == '%')
 		{
-			if (convert[j].id[0] == format[i] && convert[j].id[1] == format[i + 1])
+			i++, prev_buff_count = buff_count;
+			for (j = 0; container[j].t != '\0'; j++)
 			{
-				len += convert[j].func(args);
-				i = i + 2;
-				goto Here;
+				if (format[i] == '\0')
+					break;
+				if (format[i] == container[j].t)
+				{
+					buff_count = container[j].f(buffer, arg, buff_count);
+					break;
+				}
 			}
-			j--;
+			if (buff_count == prev_buff_count && format[i])
+				i--, buffer[buff_count] = format[i], buff_count++;
 		}
-		_putchar(format[i]);
-		len++;
+		else
+			buffer[buff_count] = format[i], buff_count++;
 		i++;
 	}
-	va_end(args);
-	return (len);
+	va_end(arg);
+	buffer[buff_count] = '\0';
+	print_buff(buffer, buff_count);
+	return (buff_count);
 }

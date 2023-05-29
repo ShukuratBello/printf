@@ -2,14 +2,18 @@
 
 /**
  * printf_c - A function that prints a char
+ * @buff_dest: buffer
  * @val: character to print
- * Return: The number of bytes stored to the buffer.
+ * @buff_count: index of buffer pointer
+ * Return: buff index
  */
-int printf_c(va_list val)
+int printf_c(char *buff_dest, va_list val, int buff_count)
 {
 	char ch;
 
 	ch = va_arg(val, int);
-	_putchar(ch);
-	return (1);
+
+	buff_dest[buff_count] = c;
+
+	return (++buff_count);
 }
