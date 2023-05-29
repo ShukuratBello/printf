@@ -20,13 +20,13 @@ typedef struct converter_s
 } converter_t;
 
 int printf_unsigned(va_list args);
-int printf_s(va_list val);
+unsigned int printf_s(va_list val);
 int printf_int(va_list args);
 int _strlen(char *s);
 int _strlenc(const char *s);
 int _strlenc(const char *s);
-int printf_percent(void);
-int printf_c(va_list val);
+unsigned int printf_percent(void);
+unsigned int printf_c(va_list val);
 unsigned int printf_string(va_list val);
 int _putchar(char c);
 int _printf(const char *format, ...);

@@ -9,9 +9,8 @@ unsigned int (*handle_specifiers(const char *specifier))(va_list)
 {
 	int i;
 	converter_t converters[] = {
-		{'%c', printf_c},
-		{'%s', printf_s},
-		{'%%', printf_percent},
+		{'c', printf_c},
+		{'s', printf_s},
 		{0, NULL}
 		/**
 		 *{'i', convert_di},
@@ -42,11 +41,11 @@ unsigned int (*handle_specifiers(const char *specifier))(va_list)
  * @format: argument types to print
  * Return: length of characters to print
  */
-int _printf(const char * const format, ...)
+int _printf(const char *format, ...)
 {
 
 	va_list args;
-	int i = 0, j;
+	int i = 0;
 	unsigned int len = 0;
 	unsigned int (*f)(va_list);
 
