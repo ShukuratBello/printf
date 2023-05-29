@@ -25,7 +25,7 @@ int printf_int(va_list args);
 int _strlen(char *s);
 int _strlenc(const char *s);
 int _strlenc(const char *s);
-unsigned int printf_percent(void);
+unsigned int print_percent(va_list l);
 unsigned int printf_c(va_list val);
 unsigned int printf_string(va_list val);
 int _putchar(char c);

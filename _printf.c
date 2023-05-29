@@ -12,6 +12,7 @@ unsigned int (*handle_specifiers(const char *specifier))(va_list)
 	converter_t converters[] = {
 		{'c', printf_c},
 		{'s', printf_s},
+		{'%', print_percent},
 		{0, NULL}
 		/**
 		 *{'i', convert_di},
