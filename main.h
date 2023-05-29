@@ -22,7 +22,7 @@ typedef struct call
 
 int printf_int(va_list args);
 int _strlen(char *s);
-char *_strcpy(char *dest, char *src)
+char *_strcpy(char *dest, char *src);
 int _strlenc(const char *s);
 int print_percent(char *buff_dest, va_list arg, int buff_count);
 int printf_c(char *buff_dest, va_list val, int buff_count);

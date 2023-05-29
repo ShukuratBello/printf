@@ -10,11 +10,10 @@
 int printf_s(char *buff_dest, va_list val, int buff_count)
 {
 	char *s;
-	int i, len;
+	int i;
 
 	s = va_arg(val, char *);
 	if (s == NULL)
-	{
 		s = "(null)";
 
 	if (s[0] == '\0')

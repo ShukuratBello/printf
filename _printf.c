@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 		 */
 	};
 
-	va_list args;
+	va_list arg;
 	int i = 0, j = 0;
 	int buff_count = 0, prev_buff_count = 0;
 	char buffer[2000];

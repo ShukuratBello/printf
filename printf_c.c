@@ -13,7 +13,7 @@ int printf_c(char *buff_dest, va_list val, int buff_count)
 
 	ch = va_arg(val, int);
 
-	buff_dest[buff_count] = c;
+	buff_dest[buff_count] = ch;
 
 	return (++buff_count);
 }
