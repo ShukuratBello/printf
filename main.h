@@ -1,5 +1,6 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
+
 #include <stdarg.h>
 #include <stdio.h>
 /**
@@ -10,13 +11,13 @@
 typedef struct type
 {
 	char *t;
-	int (*f)(va_list);
+	int (*f)();
 } 
-type_t
+type_t;
 
 int _printf(const char *format, ...);
 int _putchar(char c);
-int type_c(va_list c);
-int type_s(va_list s);
-int type_p(va_list p);
+unsigned int type_c(va_list args)
+unsigned int type_s(va_list args)
+unsigned int type_percent(va_list args)
 #endif

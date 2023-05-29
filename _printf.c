@@ -12,8 +12,8 @@ int (*view_format(const char *format))(va_list)
 	type_t p[] = {
 		{"c", type_c},
 		{"s", type_s},
-		{"p", type_p},
-		{NULL, NULL}
+		{"%", type_percent},
+		{0, NULL}
 	};
 
 	for (; p[i].t != NULL; i++)
