@@ -10,9 +10,9 @@ int (*view_format(const char *format))(va_list)
 {
 	int i = 0;
 	type_t p[] = {
-		{"c", type_c},
-		{"s", type_s},
-		{"%", type_percent},
+		{'c', type_c},
+		{'s', type_s},
+		{'%', type_percent},
 		{0, NULL}
 	};
 
