@@ -3,6 +3,11 @@
 
 #include <stdarg.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <limits.h>
+#include <unistd.h>
+
 /**
  * struct type - structure for printing various format types
  * @t: type to print
@@ -12,8 +17,7 @@ typedef struct type
 {
 	char *t;
 	int (*f)();
-} 
-type_t;
+} type_t;
 
 int _printf(const char *format, ...);
 int _putchar(char c);
