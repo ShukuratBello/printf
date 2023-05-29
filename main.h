@@ -9,19 +9,27 @@
 #include <unistd.h>
 
 /**
- * struct type - structure for printing various format types
- * @t: type to print
- * @f: function to print
+ * struct converter_s - A new type defining a converter struct.
+ * @specifier: A character representing a conversion specifier.
+ * @func: A pointer to a conversion function corresponding to specifier.
  */
-typedef struct type
+typedef struct converter_s
 {
-	char *t;
-	int (*f)();
-} type_t;
+	unsigned char specifier;
+	unsigned int (*func)(va_list);
+} converter_t;
 
-int _printf(const char *format, ...);
+int printf_unsigned(va_list args);
+int printf_s(va_list val);
+int printf_int(va_list args);
+int _strlen(char *s);
+int _strlenc(const char *s);
+int _strlenc(const char *s);
+int printf_percent(void);
+int printf_c(va_list val);
+unsigned int printf_string(va_list val);
 int _putchar(char c);
-unsigned int type_c(va_list args)
-unsigned int type_s(va_list args)
-unsigned int type_percent(va_list args)
+int _printf(const char *format, ...);
+unsigned int (*handle_specifiers(const char *specifier))(va_list);
+
 #endif

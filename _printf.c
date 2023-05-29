@@ -1,74 +1,73 @@
 #include "main.h"
 #include <stdarg.h>
-
 /**
- * view_format - checks code for a valid format specifier
- * @format: format specifier that could be valid
- * Return: valid function or NULL pointer
+ * handle_specifiers - entry point
+ * @specifier: conversion between function types
+ * Return: 0
  */
-int (*view_format(const char *format))(va_list)
+unsigned int (*handle_specifiers(const char *specifier))(va_list)
 {
-	int i = 0;
-	type_t p[] = {
-		{'c', type_c},
-		{'s', type_s},
-		{'%', type_percent},
+	int i;
+	converter_t converters[] = {
+		{'c', printf_c},
+		{'s', printf_s},
+		{'%', printf_percent},
 		{0, NULL}
+		/**
+		 *{'i', convert_di},
+		 *{'%', convert_percent},
+		 *{'b', convert_b},
+		 *{'u', convert_u},
+		 *{'o', convert_o},
+		 *{'x', convert_x},
+		 *{'X', convert_X},
+		 *{'S', convert_S},
+		 *{'p', convert_p},
+		 *{'r', convert_r},
+		 *{'R', convert_R},
+		 */
 	};
 
-	for (; p[i].t != NULL; i++)
+	for (i = 0; converters[i].func; i++)
 	{
-		if (*(p[i].t) == *format)
-			break;
+		if (converters[i].specifier == *specifier)
+			return (converters[i].func);
 	}
-	return (p[i].f);
+
+	return (NULL);
 }
 
 /**
- * _printf - format printing
+ * _printf - function to print string
  * @format: argument types to print
- * Return: numbers of characters to print
+ * Return: length of characters to print
  */
-int _printf(const char *format, ...)
+int _printf(const char * const format, ...)
 {
-	va_list ap;
-	int (*f)(va_list);
-	unsigned int i = 0, counter = 0; /*not sure about this line*/
 
-	if (format == NULL)
+	va_list args;
+	int i = 0, j;
+	unsigned int len = 0;
+	unsigned int (*f)(va_list);
+
+	va_start(args, format);
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-	va_start(ap, format);
-	while (format && format[i])
+Here:
+	while (format[i] != '\0')
 	{
-		if (format[i] != '%')
+		if (*(format + i) == '%')
 		{
+			f = handle_specifiers(format + i + 1);
+			len += f(args);
+			i = i + 1;
+			goto Here;
+		}
 			_putchar(format[i]);
-			counter++;
+			len++;
 			i++;
-			continue;
-		}
-		else
-		{
-			if (format[i + 1] == '%')
-			{
-				_putchar('%');
-				counter++;
-				i += 2;
-				continue;
-			}
-			else
-			{
-				f = check_format(&format[i + 1]);
-				if (f == NULL)
-					return (-1);
-				i += 2;
-				counter += f(ap);
-				continue;
-			}
-		}
-		i++;
 	}
-	va_end(ap);
-	return (counter);
+	va_end(args);
+	return (len);
 }
