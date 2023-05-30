@@ -12,22 +12,12 @@ int _printf(const char *format, ...)
 	converter_t container[] = {
 		{'c', printf_c}, {'s', printf_s}, {'%', print_percent},
 		{'d', printf_di}, {'i', printf_di}, {'b', printf_b},
-		{'u', printf_u}, {'o', printf_o}, {'\0', NULL}
-		/**
-		 *{'u', convert_u},
-		 *{'o', convert_o},
-		 *{'x', convert_x},
-		 *{'X', convert_X},
-		 *{'S', convert_S},
-		 *{'p', convert_p},
-		 *{'r', convert_r},
-		 *{'R', convert_R},
-		 */
+		{'u', printf_u}, {'o', printf_o}, {'x', printf_x},
+		{'X', printf_X}, {'r', printf_r}, {'R', printf_R}, {'\0', NULL}
 	};
 
 	va_list arg;
-	int i = 0, j = 0;
-	int buff_count = 0, prev_buff_count = 0;
+	int i = 0, j = 0, buff_count = 0, prev_buff_count = 0;
 	char buffer[2000];
 
 	if (!format)
