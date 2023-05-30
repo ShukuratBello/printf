@@ -10,13 +10,9 @@
 int _printf(const char *format, ...)
 {
 	converter_t container[] = {
-		{'c', printf_c},
-		{'s', printf_s},
-		{'%', print_percent},
-		{'\0', NULL}
+		{'c', printf_c}, {'s', printf_s}, {'%', print_percent},
+		{'d', printf_di}, {'i', printf_di}, {'\0', NULL}
 		/**
-		 *{'i', convert_di},
-		 *{'%', convert_percent},
 		 *{'b', convert_b},
 		 *{'u', convert_u},
 		 *{'o', convert_o},

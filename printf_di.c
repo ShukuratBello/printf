@@ -3,17 +3,17 @@
 /**
  * printf_di - substitute %i by argument number
  * @buff_dest: string to change
- * @num: va_list arg to change
+ * @arg: va_list arg to change
  * @buff_count: index of dst where the c of %c is
  * Return: New index
  */
-int printf_di(char *buff_dest, va_list num, int buff_count)
+int printf_di(char *buff_dest, va_list arg, int buff_count)
 {
 	int tens = 1;
 	unsigned int temp;
 	int fig;
 
-	fig = va_arg(num, int);
+	fig = va_arg(arg, int);
 
 	if (fig < 0)
 	{
