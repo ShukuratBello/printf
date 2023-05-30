@@ -25,6 +25,7 @@ int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 int _strlenc(const char *s);
 int print_percent(char *buff_dest, va_list arg, int buff_count);
+int printf_b(char *buff_dest, va_list arg, int buff_count);
 int printf_c(char *buff_dest, va_list val, int buff_count);
 int printf_s(char *buff_dest, va_list val, int buff_count);
 int printf_di(char *buff_dest, va_list arg, int buff_count);
