@@ -29,6 +29,8 @@ int printf_b(char *buff_dest, va_list arg, int buff_count);
 int printf_c(char *buff_dest, va_list val, int buff_count);
 int printf_s(char *buff_dest, va_list val, int buff_count);
 int printf_di(char *buff_dest, va_list arg, int buff_count);
+int printf_u(char *buff_dest, va_list arg, int buff_count);
+int printf_o(char *buff_dest, va_list arg, int buff_count);
 int printf_string(va_list val);
 int _putchar(char c);
 int _printf(const char *format, ...);
