@@ -33,6 +33,7 @@ int printf_u(char *buff_dest, va_list arg, int buff_count);
 int printf_o(char *buff_dest, va_list arg, int buff_count);
 int printf_string(va_list val);
 int _putchar(char c);
+int str_len(char *s);
 int _printf(const char *format, ...);
 int buff_append(char *buff_dest, va_list arg, int buff_count, char type);
 int print_buff(char *buff, unsigned int nbuff);
